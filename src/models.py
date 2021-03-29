@@ -13,10 +13,10 @@ class User(Base):
     # Here we define columns for the table person
     # Notice that each column is also a normal Python instance attribute.
     id = Column(Integer, primary_key=True)
-    username = Column(String(200), index=True, nullable=False)
-    firstname = Column(String(40), nullable=False)
-    lastname = Column(String(40), nullable=False)
-    email = Column(String(100), unique=True, nullable=False)
+    username = Column(String(250), nullable=False)
+    firstname = Column(String(200), nullable=False)
+    lastname = Column(String(200), nullable=False)
+    email = Column(String(200), nullable=False)
 
 class Follower(Base):
     __tablename__ = 'follower'
@@ -35,7 +35,7 @@ class Media(Base):
     __tablename__ = 'media'
     id = Column(Integer, primary_key=True)
     type_media = Column(Enum('photo'))
-    url = Column(String(140), nullable=False)
+    url = Column(String(250), nullable=False)
     post_id = Column(Integer, ForeignKey('post.id'))
     post = relationship(Post)
 
@@ -43,7 +43,7 @@ class Comment(Base):
     __tablename__ = 'comment'
     id = Column(Integer, primary_key=True)
     comment_text = Column(String(280), nullable=False)
-    author_id = Column(String(140), ForeignKey('user.id'))
+    author_id = Column(String(200), ForeignKey('user.id'))
     user = relationship(User)
     post_id = Column(Integer, ForeignKey('post.id'))
     post = relationship(Post)
